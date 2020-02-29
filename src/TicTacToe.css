@@ -1,0 +1,73 @@
+:root {
+  --cell-border: grey solid 2px;
+  --cell-width: 100px;
+}
+
+.tictactoe {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 40px 0 0 calc(50% - var(--cell-width) * 1.5);
+  width: calc(var(--cell-width) * 3 + 4px);
+}
+
+.tictactoe .row {
+  display: flex;
+  border-bottom: var(--cell-border);
+}
+
+.tictactoe .row:last-of-type {
+  border-bottom: none;
+}
+
+.tictactoe .row .cell {
+  border-right: var(--cell-border);
+  height: var(--cell-width);
+  position: relative;
+  width: var(--cell-width);
+}
+
+.tictactoe .row .cell:last-of-type {
+  border-right: none;
+}
+
+.circle {
+  background: white;
+  border: gray solid 4px;
+  border-radius: 50px;
+  cursor: not-allowed;
+  height: calc(var(--cell-width) - 16px);
+  margin: 4px;
+  width: calc(var(--cell-width) - 16px);
+}
+
+.cross {
+  cursor: not-allowed;
+  height: calc(var(--cell-width) - 4px);
+  position: absolute;
+  right: -2px;
+  top: -6px;
+  width: calc(var(--cell-width) - 4px);
+}
+
+.cross:before, .cross:after {
+  position: absolute;
+  left: 41px;
+  content: ' ';
+  height: calc(var(--cell-width) + 14px);
+  width: 4px;
+  background-color: gray;
+}
+.cross:before {
+  transform: rotate(45deg);
+}
+.cross:after {
+  transform: rotate(-45deg);
+}
+
+.empty {
+  background: none;
+  height: 100%;
+  width: 100%;
+  border: none;
+}
