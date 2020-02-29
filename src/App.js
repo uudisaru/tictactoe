@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import "./App.css";
 import TicTacToe from "./TicTacToe";
 import { CIRCLE, CROSS, EMPTY } from "./Cell";
+import GameStatus from "./GameStatus";
 
+const STATUS_IN_PROGRESS = "in-progress";
+const STATUS_LOSE = "lose";
+const STATUS_TIE = "tie";
+const STATUS_WIN = "win";
 const INITIAL_BOARD = {
   board: [
     [EMPTY, EMPTY, EMPTY],
@@ -10,19 +15,19 @@ const INITIAL_BOARD = {
     [EMPTY, EMPTY, EMPTY]
   ],
   result: null,
-  status: "in-progress",
+  status: STATUS_IN_PROGRESS,
   turn: CROSS
 };
 
 function calculateStatus(board) {
   // winning solution: row, col or diagonal filled
-  let status = { status: "in-progress", result: null };
+  let status = { status: STATUS_IN_PROGRESS, result: null };
 
   // rows & columns
   for (let i = 0; i < 3; i++) {
     // rows
     if (board[i][0] !== EMPTY && board[i].every(cell => cell === board[i][0])) {
-      status.status = board[i][0] === CIRCLE ? "win" : "lose";
+      status.status = board[i][0] === CIRCLE ? STATUS_WIN : STATUS_LOSE;
       console.debug("Row", board[i][0] === CIRCLE, board[i][0], status);
       status.result = { type: "row", index: i };
       break;
@@ -32,14 +37,14 @@ function calculateStatus(board) {
       board[0][i] !== EMPTY &&
       [board[1][i], board[2][i]].every(cell => cell === board[0][i])
     ) {
-      status.status = board[0][i] === CIRCLE ? "win" : "lose";
+      status.status = board[0][i] === CIRCLE ? STATUS_WIN : STATUS_LOSE;
       status.result = { type: "col", index: i };
       break;
     }
   }
 
   // diagonals
-  if (status.status === "in-progress") {
+  if (status.status === STATUS_IN_PROGRESS) {
     if (board[1][1] !== EMPTY) {
       if (board[1][1] === board[0][0] && board[1][1] === board[2][2]) {
         status.result = { type: "diag", index: 0 };
@@ -47,8 +52,14 @@ function calculateStatus(board) {
         status.result = { type: "diag", index: 2 };
       }
       if (!!status.result) {
-        status.status = board[1][1] === CIRCLE ? "win" : "lose";
+        status.status = board[1][1] === CIRCLE ? STATUS_WIN : STATUS_LOSE;
       }
+    }
+  }
+
+  if (status.status === STATUS_IN_PROGRESS) {
+    if (board.every(row => row.every(cell => cell !== EMPTY))) {
+      status.status = STATUS_TIE;
     }
   }
 
@@ -87,6 +98,12 @@ function App() {
         }}
         result={state.result}
       />
+      {state.status !== STATUS_IN_PROGRESS && (
+        <GameStatus
+          reset={() => setState(INITIAL_BOARD)}
+          status={state.status}
+        />
+      )}
     </div>
   );
 }
