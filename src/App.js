@@ -28,7 +28,6 @@ function calculateStatus(board) {
     // rows
     if (board[i][0] !== EMPTY && board[i].every(cell => cell === board[i][0])) {
       status.status = board[i][0] === CIRCLE ? STATUS_WIN : STATUS_LOSE;
-      console.debug("Row", board[i][0] === CIRCLE, board[i][0], status);
       status.result = { type: "row", index: i };
       break;
     }

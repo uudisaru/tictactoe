@@ -4,7 +4,6 @@ import "./TicTacToe.css";
 import Cell from "./Cell";
 
 function renderStrikethrough(result) {
-  console.debug(result);
   const style = {};
   switch (result.type) {
     case "row":
