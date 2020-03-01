@@ -5,7 +5,6 @@ import "./Controls.css";
 
 const Controls = props => {
   const [mine, setMine] = useState(true);
-  console.debug("Controls", setMine);
   return (
     <header className="controls">
       <div className="controls__status">

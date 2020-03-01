@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./TicTacToe.css";
 import Cell from "./Cell";
+import Loader from "../controls/Loader";
+import Overlay from "../controls/Overlay";
 
 function renderStrikethrough(result) {
   const style = {};
@@ -21,6 +23,13 @@ function renderStrikethrough(result) {
 }
 
 const TicTacToe = props => {
+  let overlay = undefined;
+  if (props.interaction.loading) {
+    overlay = <Loader size={90}/>;
+  }
+  if (props.interaction.waiting) {
+    overlay = <Overlay size={24} text="Start a game"/>;
+  }
   return (
     <main className="tictactoe">
       {props.board.map((row, rowIndex) => (
@@ -39,12 +48,14 @@ const TicTacToe = props => {
         </div>
       ))}
       {props.result && renderStrikethrough(props.result)}
+      {overlay}
     </main>
   );
 };
 
 TicTacToe.propTypes = {
   board: PropTypes.array.isRequired,
+  interaction: PropTypes.object.isRequired,
   move: PropTypes.func.isRequired,
   result: PropTypes.object
 };
