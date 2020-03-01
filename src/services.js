@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const TICTACTOE_API = "http://tictac.aktors.ee:8800/api/board";
+const TICTACTOE_API = "https://tictac.aktors.ee/api/board";
 const API_CONFIG = {
   headers: { "Access-Control-Allow-Origin": window.origin }
 };
