@@ -1,16 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-export const CIRCLE = 1;
-export const CROSS = -1;
-export const EMPTY = 0;
+import { CellState } from "./constants";
 
 const Cell = ({ onClick, value }) => {
   return (
     <div className="cell">
-      {value === CIRCLE ? (
+      {value === CellState.Circle ? (
         <div className="circle" />
-      ) : value === CROSS ? (
+      ) : value === CellState.Cross ? (
         <div className="cross" />
       ) : (
         <button className="empty" onClick={onClick} />
@@ -21,7 +18,7 @@ const Cell = ({ onClick, value }) => {
 
 Cell.propTypes = {
   onClick: PropTypes.func,
-  value: PropTypes.oneOf([CIRCLE, CROSS, EMPTY]).isRequired,
+  value: PropTypes.oneOf([CellState.Circle, CellState.Cross, CellState.Empty]).isRequired,
 };
 
 export default Cell;

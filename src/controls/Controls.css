@@ -1,27 +1,34 @@
-.game-status {
+.controls {
   display: flex;
   flex-direction: column;
   justify-items: center;
+  min-height: 160px;
 }
 
-.game-status .game-status-text {
-  margin: 15px;
+.controls .controls__status,
+.controls .game__start {
+  margin-top: 15px;
   text-transform: uppercase;
 }
 
-.game-status .game-status-reset > button {
+.controls .controls__status > span {
+  margin-left: 15px;
+}
+
+.controls__game .game__play > button {
   background: #ffffff;
   border: 4px solid #494949;
   color: #494949;
   cursor: pointer;
   display: inline-block;
+  margin-top: 15px;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
   text-transform: uppercase;
   transition: all 0.4s ease 0s;
 }
 
-.game-status .game-status-reset > button:hover {
+.controls__game .game__play > button:hover {
   color: #ffffff;
   background: #494949;
   border-color: #494949;

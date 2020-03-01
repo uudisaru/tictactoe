@@ -22,7 +22,7 @@ function renderStrikethrough(result) {
 
 const TicTacToe = props => {
   return (
-    <div className="tictactoe">
+    <main className="tictactoe">
       {props.board.map((row, rowIndex) => (
         <div className="row" key={rowIndex}>
           {row.map((cell, cellIndex) => (
@@ -39,7 +39,7 @@ const TicTacToe = props => {
         </div>
       ))}
       {props.result && renderStrikethrough(props.result)}
-    </div>
+    </main>
   );
 };
 
