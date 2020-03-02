@@ -6,11 +6,11 @@ const Cell = ({ onClick, value }) => {
   return (
     <div className="cell">
       {value === CellState.Circle ? (
-        <div className="circle" />
+        <div className="cell__circle" />
       ) : value === CellState.Cross ? (
-        <div className="cross" />
+        <div className="cell__cross" />
       ) : (
-        <button className="empty" onClick={onClick} />
+        <button className="cell__empty" onClick={onClick} />
       )}
     </div>
   );

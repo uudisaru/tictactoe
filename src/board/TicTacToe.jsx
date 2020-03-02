@@ -33,7 +33,7 @@ const TicTacToe = props => {
   return (
     <main className="tictactoe">
       {props.board.map((row, rowIndex) => (
-        <div className="row" key={rowIndex}>
+        <div className="tictactoe__row" key={rowIndex}>
           {row.map((cell, cellIndex) => (
             <Cell
               key={cellIndex}

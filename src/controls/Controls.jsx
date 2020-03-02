@@ -14,8 +14,8 @@ const Controls = props => {
       {props.status !== BoardStatus.InProgress && (
         <div className="controls__game">
           <div className="game__start">
-            <input id="my-start" type="checkbox" checked={mine} onChange={() => setMine(!mine)}/>
-            <label htmlFor="my-start">Start with my move</label>
+            <input id="game-start" type="checkbox" checked={mine} onChange={() => setMine(!mine)}/>
+            <label htmlFor="game-start">Start with my move</label>
           </div>
           <div className="game__play">
             <button onClick={() => props.play(mine)}>
