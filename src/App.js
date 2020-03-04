@@ -48,8 +48,6 @@ function move(board, row, col, turn) {
   newBoard[row] = [...newBoard[row]];
   newBoard[row].splice(col, 1, turn);
 
-  // const status = calculateStatus(newBoard);
-
   return { newBoard };
 }
 
