@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./TicTacToe.css";
 import Cell from "./Cell";
-import Loader from "../controls/Loader";
-import Overlay from "../controls/Overlay";
+import Loader from "./Loader";
+import Overlay from "./Overlay";
 
 function renderStrikethrough(result) {
   const style = {};
