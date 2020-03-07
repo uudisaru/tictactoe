@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import TicTacToe from "./controls/TicTacToe";
 import Controls from "./controls/Controls";
-import { GameStatus, CellState, Turn, INITIAL_BOARD } from "./board/constants";
+import { CellState, GameStatus, INITIAL_BOARD, TurnType } from "./board/constants";
 import { createBoard, takeTurn } from "./services";
 import {move, boardStatus} from "./board/board";
 
@@ -22,7 +22,7 @@ function App() {
           setState({
             ...data,
             // If server's turn, the first move is done by calling the create board
-            turn: Turn.Circle,
+            turn: TurnType.PlayerMarker,
           });
           setInteraction({ waiting: false, loading: false });
         }}
@@ -33,7 +33,7 @@ function App() {
         interaction={interaction}
         move={async (row, col) => {
           if (
-            state.turn !== Turn.Circle ||
+            state.turn !== TurnType.PlayerMarker ||
             state.status !== GameStatus.InProgress
           ) {
             // Do nothing while waiting for server turn

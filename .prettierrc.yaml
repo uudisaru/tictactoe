@@ -1,4 +1,4 @@
-# .prettierrc or .prettierrc.yaml
+# Prettier configuration
 arrowParens: always
 semi: true
 singleQuote: false
