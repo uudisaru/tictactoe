@@ -1,5 +1,10 @@
 import { zeros } from 'mathjs';
 
+export const Backend = Object.freeze({
+  Server: "server",
+  Minimax: "minimax algorithm",
+});
+
 export const GameStatus = Object.freeze({
   Uninitialized: "uninitialized",
   InProgress: "in-progress",
@@ -18,8 +23,8 @@ export const CellState = Object.freeze({
 });
 
 export const TurnType = Object.freeze({
-  AiMarker: CellState.Cross,
-  PlayerMarker: CellState.Circle,
+  Ai: CellState.Cross,
+  Player: CellState.Circle,
 });
 
 export const SolutionType = Object.freeze({
@@ -32,5 +37,5 @@ export const INITIAL_BOARD = {
   board: zeros(3, 3).toArray(),
   result: null,
   status: GameStatus.Uninitialized,
-  turn: TurnType.PlayerMarker,
+  turn: TurnType.Player,
 };

@@ -1,0 +1,20 @@
+.controls {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  min-height: 160px;
+}
+
+.controls .controls__status,
+.controls .game__start {
+  margin-top: 15px;
+  text-transform: uppercase;
+}
+
+.controls .controls__status > span {
+  margin-left: 15px;
+}
+
+.controls__game .game__play > button {
+  margin-top: 15px;
+}

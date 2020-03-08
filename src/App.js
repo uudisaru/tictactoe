@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import "./App.css";
-import TicTacToe from "./controls/TicTacToe";
-import Controls from "./controls/Controls";
-import { CellState, GameStatus, INITIAL_BOARD, TurnType } from "./board/constants";
+import TicTacToe from "./controls/game/TicTacToe";
+import Controls from "./controls/game/Controls";
+import { GameStatus, INITIAL_BOARD, TurnType, Backend } from "./board/constants";
 import { createBoard, takeTurn } from "./services";
 import {move, boardStatus} from "./board/board";
+import { mmCreateBoard, mmTakeTurn } from "./board/minimax.solver";
+import Menu from "./controls/menu/Menu";
 
 function App() {
   const [state, setState] = useState(INITIAL_BOARD);
+  const [backend, setBackend] = useState(Backend.Server);
   const [interaction, setInteraction] = useState({
     loading: false,
     waiting: true,
@@ -15,14 +18,16 @@ function App() {
 
   return (
     <div className="App">
+      <Menu backend={backend} selectBackend={setBackend} />
       <Controls
         play={async (mine) => {
           setInteraction({ waiting: false, loading: true });
-          const data = await createBoard(mine);
+          const data = await mmCreateBoard(mine);
+          //const data = await createBoard(mine);
           setState({
             ...data,
             // If server's turn, the first move is done by calling the create board
-            turn: TurnType.PlayerMarker,
+            turn: TurnType.Player,
           });
           setInteraction({ waiting: false, loading: false });
         }}
@@ -33,7 +38,7 @@ function App() {
         interaction={interaction}
         move={async (row, col) => {
           if (
-            state.turn !== TurnType.PlayerMarker ||
+            state.turn !== TurnType.Player ||
             state.status !== GameStatus.InProgress
           ) {
             // Do nothing while waiting for server turn
@@ -41,9 +46,9 @@ function App() {
           }
           const { newBoard } = move(state.board, row, col, state.turn);
           setInteraction({ waiting: false, loading: true });
-          setState({ ...state, board: newBoard, turn: CellState.Cross });
+          setState({ ...state, board: newBoard, turn: TurnType.Ai });
 
-          const res = await takeTurn(state.id, row, col);
+          const res = await mmTakeTurn(state.id, row, col);
           let strikethrough = null;
           if (GameStatus.isFinished(res.status)) {
             strikethrough = boardStatus(res.board);
@@ -51,7 +56,7 @@ function App() {
           setState({
             ...res,
             result: strikethrough,
-            turn: CellState.Circle,
+            turn: TurnType.Player,
           });
           if (res.status === GameStatus.InProgress) {
             setInteraction({ waiting: false, loading: false });

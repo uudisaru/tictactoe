@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { GameStatus } from "../board/constants";
+import { GameStatus } from "../../board/constants";
 import "./Controls.css";
 
 const Controls = props => {
