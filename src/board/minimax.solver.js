@@ -84,7 +84,7 @@ export function minimax(board, turn, depth, alpha, beta) {
 
 var globalBoard = null;
 
-export async function mmCreateBoard(mine) {
+export async function mmCreateBoard(mine, id) {
   let board;
   if (mine) {
     board = INITIAL_BOARD;
@@ -95,6 +95,7 @@ export async function mmCreateBoard(mine) {
     };
 
     board.board[1][1] = TurnType.Ai;
+    board.id = id;
   }
 
   board.status = GameStatus.InProgress;
