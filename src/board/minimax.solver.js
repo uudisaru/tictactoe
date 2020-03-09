@@ -84,10 +84,10 @@ export function minimax(board, turn, depth, alpha, beta) {
 
 var globalBoard = null;
 
-export async function mmCreateBoard(mine, id) {
+export async function createBoard(mine, id) {
   let board;
   if (mine) {
-    board = INITIAL_BOARD;
+    board = {...INITIAL_BOARD};
   } else {
     board = {
       board: zeros(3, 3).toArray(),
@@ -104,7 +104,7 @@ export async function mmCreateBoard(mine, id) {
   return Promise.resolve(board);
 }
 
-export async function mmTakeTurn(gameId, row, col) {
+export async function takeTurn(gameId, row, col) {
   globalBoard = move(globalBoard, row, col, TurnType.Player).newBoard;
   let status = boardStatus(globalBoard);
   if (status.status === GameStatus.InProgress) {

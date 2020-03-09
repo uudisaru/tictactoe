@@ -28,6 +28,10 @@ function App() {
         }
         selectBackend={(backend) => {
           setState(INITIAL_BOARD);
+          setInteraction({
+            loading: false,
+            waiting: true,
+          });
           if (backend === Backend.Server) {
             setBackend(new ServerBackend());
           } else {

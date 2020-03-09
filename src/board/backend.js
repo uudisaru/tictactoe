@@ -1,5 +1,5 @@
 import axios from "axios";
-import { mmCreateBoard, mmTakeTurn } from "./minimax.solver";
+import { createBoard as mmCreateBoard, takeTurn as mmTakeTurn } from "./minimax.solver";
 
 const TICTACTOE_API = "https://tictac.aktors.ee/api/board";
 const API_CONFIG = {
