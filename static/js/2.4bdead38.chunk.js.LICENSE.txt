@@ -19,7 +19,7 @@ object-assign
  * Dual licensed under the MIT or GPL Version 2 licenses.
  **/
 
-/** @license React v0.19.0
+/** @license React v0.19.1
  * scheduler.production.min.js
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
